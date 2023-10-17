@@ -63,15 +63,14 @@ use rocket::outcome::Outcome;
 use rocket::request::{self, FromRequest, Request};
 
 /// Contains errors relating to the [BasicAuth] request guard
-#[derive(Debug)]
+#[derive(Debug, thiserror::Error)]
 pub enum BasicAuthError {
     /// Length check fail or misc error
+    #[error("Length check fail or misc error")]
     BadCount,
 
-    /// Header is missing and is required
-    //Missing, // NOTE: removed migrating to 0.5 in v2 of this crate
-
     /// Header is invalid in formatting/encoding
+    #[error("Header is invalid in formatting/encoding")]
     Invalid,
 }
 
