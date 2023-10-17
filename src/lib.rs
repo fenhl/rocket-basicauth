@@ -163,7 +163,7 @@ impl<'r> FromRequest<'r> for BasicAuth {
 
         let keys: Vec<_> = request.headers().get("Authorization").collect();
         match keys.len() {
-            0 => Outcome::Forward(()),
+            0 => Outcome::Forward(Status::Unauthorized),
             1 => match BasicAuth::new(keys[0]) {
                 Some(auth_header) => Outcome::Success(auth_header),
                 None => Outcome::Failure((Status::BadRequest, BasicAuthError::Invalid)),
