@@ -165,9 +165,9 @@ impl<'r> FromRequest<'r> for BasicAuth {
             0 => Outcome::Forward(Status::Unauthorized),
             1 => match BasicAuth::new(keys[0]) {
                 Some(auth_header) => Outcome::Success(auth_header),
-                None => Outcome::Failure((Status::BadRequest, BasicAuthError::Invalid)),
+                None => Outcome::Error((Status::BadRequest, BasicAuthError::Invalid)),
             },
-            _ => Outcome::Failure((Status::BadRequest, BasicAuthError::BadCount)),
+            _ => Outcome::Error((Status::BadRequest, BasicAuthError::BadCount)),
         }
     }
 }
