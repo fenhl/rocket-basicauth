@@ -11,7 +11,7 @@ edition = "2018"
 
 [dependencies]
 base64 = "0.13"
-rocket = "0.5.0"
+rocket = { git = "https://github.com/fenhl/Rocket", branch = "forms" }
 log = { version = "0.4", optional = true }
 thiserror = "1.0.49"
 
